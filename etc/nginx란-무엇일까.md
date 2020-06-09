@@ -1,14 +1,14 @@
 # Nginx를 이용해 SpringBoot Application을 80 port로 프록시
 
-SpringBoot Application을 80 port로 사용하고 싶은데, 리눅스 환경에서 80, 443과 같은 포트는 루트 권한으로 사용이 가능합니다.  
-SpringBoot application의 내장 톰켓이 해당 포트를 사용할 수 있도록 sudo 권한을 사용해 서비스를 올리는 것 보다 proxy 서버를 올리는게 더욱 용이합니다.  
+SpringBoot Application을 80 port로 사용하고 싶은데, 리눅스 환경에서 80, 443과 같은 포트는 루트 권한으로 사용이 가능하다.  
+SpringBoot application의 내장 톰켓이 해당 포트를 사용할 수 있도록 sudo 권한을 사용해 서비스를 올리는 것 보다 proxy 서버를 올리는게 더욱 용이하므로 Nginx를 사용한 내용을 정리한다.  
 
 <br>
 
 ## Nginx 란?
 
-Apache의 1만명 규모 클라이언트의 동시 접속을 다루는 기술적인 이슈를 해결하기 위해 만든 Event-driven 구조의 오픈소스 서버 프로그램입니다. 
-일반적인 HTTP 웹서버의 역할 외에도 proxy, reverse proxy를 제공합니다. 
+Apache의 1만명 규모 클라이언트의 동시 접속을 다루는 기술적인 이슈를 해결하기 위해 만든 Event-driven 구조의 오픈소스 서버 프로그램이다. 
+일반적인 HTTP 웹서버의 역할 외에도 proxy, reverse proxy를 제공한다. 
 
 <br>
 
@@ -16,7 +16,7 @@ Apache의 1만명 규모 클라이언트의 동시 접속을 다루는 기술적
 
 ### Centos6
 
-서버의 권한 이슈로 sudo 명령어를 사용하였습니다.
+서버의 권한 이슈로 sudo 명령어를 사용
 
 #### 설치
 
@@ -50,6 +50,8 @@ server {
     location / {
 #				SpringBoot application을 매핑
         proxy_pass http://localhost:9100;
+#				java application은 requestUrl을 실제 client가 조회하는 url로 받기 위한 설정
+        proxy_set_header Host $http_host;
     }
 
     error_page 404 /404.html;
@@ -65,10 +67,10 @@ server {
 
 ##### **server 블럭**  
 
-도메인 단위의 1차 라우팅에 대한 설정을 담당합니다.
+도메인 단위의 1차 라우팅에 대한 설정을 담당한다..
 
 * listen : 서버 블록 정의 중 해당 서버에서 라우팅 할 특정 port를 정의하는 필드
-  * default_server : 여러개의 server 블록을 작성할 때 default_server는 프로토콜 별로 단 하나의 server 블록에만 존재해야 합니다. 이 설정은 별도로 지정하지 않은 도메인으로 들어오는 다른 모든 요청에 대해서 해당 server 블록이 처리함을 의미합니다.
+  * default_server : 여러개의 server 블록을 작성할 때 default_server는 프로토콜 별로 단 하나의 server 블록에만 존재해야 합니다. 이 설정은 별도로 지정하지 않은 도메인으로 들어오는 다른 모든 요청에 대해서 해당 server 블록이 처리함을 의미한다.
 * server_name : 어떤 도메인을 라우팅 할지에 대한 필드
 
 <br>
@@ -94,3 +96,24 @@ nginx    20272 20270  0 16:36 ?        00:00:01 nginx: worker process
 nginx    20273 20270  0 16:36 ?        00:00:01 nginx: worker process
 ```
 
+<br>
+
+#### Nginx 기타 운영
+
+##### Nginx 중지
+
+```shell
+$ nginx -s stop
+```
+
+##### Nginx 리로드
+
+```shell
+$ nginx -s reload
+```
+
+##### Nginx 체크
+
+```shell
+$ nginx -s check
+```
