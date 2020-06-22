@@ -102,5 +102,51 @@ Object.defineProperty(viewModel, 'str', {
 
 ## 인스턴스
 
+### 인스턴스 소개
+
 뷰로 개발할 때 필수로 생성해야 하는 코드
+
+<br>
+
+### 인스턴스와 생성자 함수
+
+생성자 함수로 Vue에서 Api, 함수를 미리 생성해놓고 이후에 그냥 갖다 쓸 수 있음
+
+```javascript
+function Vue() {
+	this.logText = function() {
+    console.log('hello');
+  }
+}
+
+var vm = new Vue();
+vm.logText();
+```
+
+<br>
+
+### 인스턴스 옵션 속성
+
+```javascript
+// 객체를 변수로 정의하고 객체를 vue model에 넘겨주는 것 보다
+var options = {
+  el: '#app',
+  data: {
+    message: 'hi'
+  },
+  methods: {              
+  }
+}
+var vm = new Vue(options);
+
+// 객체 리터럴로 통째로 넘겨주는 것이 가독성이 더 올라감
+var vm = new Vue({
+  el: '#app',
+  data: {
+    message: 'hi'
+  },
+  methods: {              
+  }
+});
+```
 
