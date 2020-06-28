@@ -159,9 +159,93 @@ var vm = new Vue({
 #### 컴포넌트란?
 
 > 화면의 영역을 구분하여 개발할 수 있는 뷰의 기능  
-> 코드의 반복을 최대한 줄이고, 재사용성이 올라감
+> 영역을 구분하여 개발하기 때문에 기존의 영역들을 조합하여 새로운 화면을 만드는 등의 재사용성이 올라가고 코드의 반복성이 줄어듦
 
 <br>
 
-### [실습 안내] 컴포넌트 등록 및 실습
+### [실습 안내] 컴포넌트 등록 및 실습 && [실습 안내] 전역 컴포넌트 등록
+
+#### 컴포넌트 등록방법
+
+```javascript
+Vue.component('컴포넌트 이름', 컴포넌트 내용);
+```
+
+e.g.)  
+
+```html
+<body>
+    <div id="app">
+        <app-header></app-header>
+        <app-content></app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+      	// 화면에 추가할 컴포넌트를 등록
+      	// 전역 컴포넌트
+        Vue.component('app-header', {
+            template: '<h1>Header</h1>'
+        });
+        Vue.component('app-content', {
+            template: '<div>content</div>'
+        });
+
+        new Vue({
+            el: '#app',
+            data: {
+                message: 'hi'
+            },
+            methods: {
+            }
+        });
+        var vm = new Vue(options);
+    </script>
+</body>
+```
+
+<br>
+
+### 지역 컴포넌트 등록
+
+#### 지역 컴포넌트 등록 방식
+
+```javascript
+<body>
+    <div id="app">
+        <컴포넌트 이름></컴포넌트 이름>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        // 전역 컴포넌트 등록방식인 아래 대신 하단의 Vue 인스턴스 내에 정의 해 준다.
+        // Vue.component('컴포넌트 이름', 컴포넌트 내용);
+
+        new Vue({
+            el: '#app',
+            components: {
+                '컴포넌트 이름': 컴포넌트 내용
+            }
+        });
+        var vm = new Vue(options);
+    </script>
+</body>
+```
+
+<br>
+
+### 전역 컴포넌트와 지역 컴포넌트의 차이점 & 컴포넌트와 인스턴스와의 관계
+
+* 전역 컴포넌트
+  * 플러그인, 라이브러리 형태로 전역으로 사용해야 하는 컴포넌트 일 경우에만 사용
+  * 인스턴스를 생성하지 않아도 기본적으로 모든 인스턴스에 등록이 됨
+* 지역 컴포넌트
+  * 일반적인 컴포넌트 등록 방법
+  * 새 인스턴스를 생성 할 때마다 등록해줘야 함
+
+<br>
+
+
+
+
 
