@@ -258,3 +258,83 @@ e.g.)
 
 컴포넌트 간에 데이터 이동(props 전달)과 이벤트 발생이 컴포넌트 트리 구조와 상관없이 마구잡이로 발생하게 되면 문제가 생겼을 시 문제의 원인을 찾기가 어려워짐  
 데이터는 아래로만 흐르고, 이벤트는 위로만 발생해야 이러한 문제가 발생하지 않음 ![컴포넌트통신규칙](../../../images/컴포넌트-통신-규칙.png)
+
+<br>
+
+### props 속성
+
+#### props 등록 예시  
+
+```html
+<body>
+    <div id="app">
+      	<!-- 아래의 형식과 같이 v-bind를 이용해 props 속성을 등록 -->
+        <!-- <app-header v-bind:프롭스 속성 이름="상위 컴포넌트의 데이터 이름"></app-header> -->
+        <app-header v-bind:propsdata="message"></app-header>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<h1>header</h1>',
+            props: ['propsdata']  // props 속성 이름을 등록
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader
+            },
+            data: {
+                message: 'hi'
+            }
+        })
+    </script>
+</body>
+```
+
+<br>
+
+### props 속성의 특징
+
+props 속성으로 데이터를 상위 컴포넌트에게 받을 시, 상위 컴포넌트의 데이터 내용이 바뀌면 하위 컴포넌트에서도 데이터가 바뀜
+
+<br>
+
+### event emit
+
+#### event emit 등록 예시
+
+```html
+<body>
+    <div id="app">
+        <!-- <app-header v-on:하위 컴포넌트에서 발생한 이벤트 이름="하위 컴포넌트의 메서드 이름"></app-header> -->
+        <app-header v-on:pass="logText"></app-header>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<button v-on:click="passEvent">click me</button>',
+            methods: {
+                passEvent: function() {
+                    this.$emit('pass');
+                }
+            }
+        }
+
+        new Vue({
+             el: '#app',
+             components: {
+                 'app-header': appHeader
+             },
+             methods: {
+                 logText: function() {
+                     console.log('hi');
+                 }
+             }
+        })
+    </script>
+</body>
+```
+
