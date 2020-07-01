@@ -338,3 +338,65 @@ props 속성으로 데이터를 상위 컴포넌트에게 받을 시, 상위 컴
 </body>
 ```
 
+<br>
+
+## 컴포넌트 통신 방법 - 응용
+
+### 같은 컴포넌트 레벨 간의 통신 방법
+
+아래의 그림 중 AppHeader, AppContent 컴포넌트는 같은 레벨에 존재하므로 상위 -> 하위로 props 속성을 이용해 데이터를 주고받는 방법을 사용할 수 없음  
+이러한 경우 어떻게 데이터를 주고받을지 살펴봐야 함  ![같은 컴포넌트 레벨 간의 통신 방법](../../../images/같은-컴포넌트-레벨-간의-통신-방법.png)
+
+<br>
+
+### 같은 컴포넌트 레벨 간의 통신 방법 구현 1
+
+같은 레벨의 컴포넌트 간의 데이터 통신은 불가, 대신 상위 컴포넌트를 통해 event, props를 이용해 통신함 ![같은 컴포넌트 레벨 간의 통신 방법1](../../../images/같은-컴포넌트-레벨-간의-통신-방법1.png)
+
+<br>
+
+### 같은 컴포넌트 레벨 간의 통신 방법 구현 2
+
+![같은 컴포넌트 레벨 간의 통신 방법2](../../../images/같은-컴포넌트-레벨-간의-통신-방법2.png)
+
+```html
+<body>
+    <div id="app">
+        <app-header v-bind:propsdata="num"></app-header>
+        <app-content v-on:pass="deliverNum"></app-content>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var appHeader = {
+            template: '<div>header</div>',
+            props: ['propsdata']
+        }
+        var appContent = {
+            template: '<div>content <button v-on:click="passNum">pass</button></div>',
+            methods: {
+                passNum: function() {
+                    this.$emit('pass', 10);
+                } 
+            }
+        }
+
+        new Vue({
+            el: '#app',
+            components: {
+                'app-header': appHeader,
+                'app-content': appContent
+            },
+            data: {
+                num: 0
+            },
+            methods: {
+                deliverNum: function(value) {
+                    this.num = value;                  
+                }
+            }
+        })
+    </script>
+</body>
+```
+
