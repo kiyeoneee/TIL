@@ -163,7 +163,7 @@ var vm = new Vue({
 
 <br>
 
-### [실습 안내] 컴포넌트 등록 및 실습 && [실습 안내] 전역 컴포넌트 등록
+### [실습 안내] 컴포넌트 등록 및 실습 & [실습 안내] 전역 컴포넌트 등록
 
 #### 컴포넌트 등록방법
 
@@ -396,6 +396,82 @@ props 속성으로 데이터를 상위 컴포넌트에게 받을 시, 상위 컴
                 }
             }
         })
+    </script>
+</body>
+```
+
+<br>
+
+## 라우터
+
+### 뷰 라우터 소개와 설치
+
+라우터를 사용하기 위해서는 vue를 사용하는 것과 마찬가지로 소스 url이 필요하다.
+
+```html
+<!-- 순서 중요! -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+```
+
+<br>
+
+### 뷰 라우터 인스턴스 연결 및 초기 상태 안내 & [실습 안내] routes 속성 설명 및 실습 안내
+
+라우터 등록 방법
+
+```html
+<body>
+    <div id="app"></div>   
+
+    <!-- 순서 중요! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var router = new VueRouter({
+
+        });
+
+        new Vue({
+            el: '#app',
+            router: router
+        });
+    </script>
+</body>
+```
+
+<br>
+
+### 라우터가 표시되는 영역 및 router-view 태그 설명
+
+```html
+<body>
+    <div id="app">
+        <!-- Vue 인스턴스의 라우터 인스턴스를 연결해야지만 사용할 수 있는 태그 -->
+        <!-- 아래 script에서 router 정보로 넘겨 받은 path가 호출되었을 때 해당 path의 페이지가 표시되는 부분 -->
+        <router-view></router-view>
+    </div>   
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var LoginComponent = {
+            template: '<div>login</div>'
+        }
+
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/login',
+                    component: LoginComponent
+                }
+            ]
+        });
+
+        new Vue({
+            el: '#app',
+            router: router
+        });
     </script>
 </body>
 ```
