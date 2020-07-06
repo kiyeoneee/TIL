@@ -406,7 +406,7 @@ props 속성으로 데이터를 상위 컴포넌트에게 받을 시, 상위 컴
 
 ### 뷰 라우터 소개와 설치
 
-라우터를 사용하기 위해서는 vue를 사용하는 것과 마찬가지로 소스 url이 필요하다.
+라우터를 사용하기 위해서는 vue를 사용하는 것과 마찬가지로 CDN 방식을 사용
 
 ```html
 <!-- 순서 중요! -->
@@ -452,6 +452,49 @@ props 속성으로 데이터를 상위 컴포넌트에게 받을 시, 상위 컴
         <router-view></router-view>
     </div>   
 
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script>
+        var LoginComponent = {
+            template: '<div>login</div>'
+        }
+
+        var router = new VueRouter({
+            routes: [
+                {
+                    path: '/login',
+                    component: LoginComponent
+                }
+            ]
+        });
+
+        new Vue({
+            el: '#app',
+            router: router
+        });
+    </script>
+</body>
+```
+
+<br>
+
+### 링크를 이용한 페이지 이동 및 router-link 태그 설명
+
+해당 서비스의 path는 사용자가 모두 일일이 알 수 없으므로 url을 치고 해당 페이지에 접근하기가 어렵다.  
+링크를 제공해 사용자가 사용할 수 있도록 해준다.
+
+```html
+<body>
+    <div id="app">
+        <div>
+						<!-- to의 값에 이동하고자 하는 페이지 path를 넘겨준다 -->
+          	<!-- router-link는 <a> 태그와 같은 역할을 함 -->
+            <router-link to="/login">Login</router-link>
+        </div>
+        <router-view></router-view>
+    </div>   
+
+    <!-- 순서 중요! -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
     <script>
