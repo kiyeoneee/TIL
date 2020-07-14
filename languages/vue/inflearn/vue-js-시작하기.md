@@ -519,3 +519,29 @@ props 속성으로 데이터를 상위 컴포넌트에게 받을 시, 상위 컴
 </body>
 ```
 
+<br>
+
+## HTTP 통신 라이브러리 - axios
+
+### Axios 소개 및 오픈 소스를 사용하기 전에 알아야 할 것들
+
+#### Axios 란?
+
+Vue에서 권고하는 HTTP 통신 라이브러리  
+Promise 기반의 HTTP 통신 라이브러리 
+
+#### 자바스크립트의 비동기 처리 패턴
+
+1. callback
+2. promise
+3. promise + generator
+4. async & await
+
+<br>
+
+### Axios 실습 및 this 설명
+
+#### Axios의 response
+
+config + data + headers + request + status + statusText
+
