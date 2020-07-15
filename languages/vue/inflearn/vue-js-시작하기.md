@@ -545,3 +545,25 @@ Promise 기반의 HTTP 통신 라이브러리
 
 config + data + headers + request + status + statusText
 
+<br>
+
+### 웹 서비스에서의 클라이언트와 서버와의 HTTP 통신 구조
+
+<br>
+
+### 크롬 개발자 도구 네트워크 패널 보는 방법
+
+- Header  패널
+  - 실제 해당 사이트에 대한 요청과 응답 데이터를 확인
+- Response 패널
+  - 응답 받은 내용을 상세하게 조회하는 패널
+- Preview 패널
+  - 실제 Response를 좀 더 보기 편하게 해줌
+
+참고 - Http 통신 관련 정보  
+https://joshua1988.github.io/web-development/http-part1/
+
+<br>
+
+  
+
