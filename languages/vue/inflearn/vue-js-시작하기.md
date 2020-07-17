@@ -565,5 +565,149 @@ https://joshua1988.github.io/web-development/http-part1/
 
 <br>
 
-  
+## 템플릿 문법 - 기본
+
+### 템플릿 문법 소개
+
+템플릿 문법이란?  
+뷰로 화면을 조작하는 방법  
+데이터 바인딩과 디렉티브로 나뉨
+
+* 데이터 바인딩
+
+  * 뷰 인스턴스에서 정의한 속성들을 화면에 표시하는 방법  
+
+    ```html
+    <body>
+    	<div>{{ message }}</div>
+    	<script>
+      	new Vue({
+        	data: {
+          	message: 'Hello Vue.js'
+    	    }
+      	})
+    	</script>
+    </body>
+    ```
+
+* 디렉티브
+
+  * Html 태그에서 일반적인 id, class와 같은 표준 속성을 제외하고 `v- `가 붙어있는 속성들로 vue가 인식하여 내부적으로 조작
+
+    ```html
+    <div>
+      Hello <span v-if="show">Vue.js</span>
+    </div>
+    ```
+
+<br>
+
+### 데이터 바인딩과 computed 속성
+
+#### Computed  속성이란
+
+다른 속성에 의해 변경 될 수 있는 속성에 대한 정의   
+
+```html
+<body>
+    <div id="app">
+      	<!-- 아래의 id 속성이 변경될 수 있으므로 Vue의 data에 정의하여 reactive 하게 처리 -->
+        <!-- <p id='abc1234'>{{ num }}</p> -->
+        <p v-bind:id="uuid">{{ num }}</p>
+	      <!-- doubleNum 값은 num에 의해 변하는 값 -->
+        <p>{{ doubleNum }}</p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data:  {
+                num: 10,
+                uuid: 'abc1234'
+            },
+            computed: {
+                doubleNum: function() {
+                    return this.num * 2;
+                }
+            }
+        })
+    </script>
+</body>
+```
+
+<br>
+
+### methods 속성과 v-on 디렉티브를 이용한 키보드, 마우스 이벤트 처리 방법
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   <div id="app">
+     <!-- 아래와 같이 v-on 속성을 이용해 키보드 입력, 마우스 이벤트에 따른 처리 설정이 가능 -->
+       <button v-on:click="logText">click me</button>
+       <input type="text" v-on:keyup.enter="logText"> 
+       <button>add</button>
+   </div> 
+
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script>
+       new Vue({
+           el: '#app',
+           methods: {
+               logText: function() {
+                   console.log('clicked');
+               }
+           }
+       })
+   </script>
+</body>
+</html>
+```
+
+<br>
+
+## 템플릿 문법 - 실전
+
+### watch 속성
+
+데이터를 대상으로 설정할 수 있는 속성으로, 데이터의 변화에 따라 특정 로직을 실행시킬 수 있는 Vue의 속성
+
+```javascript
+new Vue({
+  el: '#app',
+  data: {
+    num: 10
+  },
+  watch: { // num 데이터의 변화에 따라서 특정 로직을 실행
+    num: function() {
+      this.logText();
+    }
+  },
+  methods: {
+    addNum: function() {
+      this.num = this.num + 1;
+    },
+    logText: function() {
+      console.log('changed');                
+    }
+	}
+})
+```
+
+<br>
+
+### watch 속성 vs computed 속성
+
+* watch
+  * 좀 더 무거운 로직 (매번 실행되기 어려운 로직 e.g. 데이터 요청)
+* computed
+  * 단순한 값에 대한 계산
+  * 단순한 text의 입력을 받아 validation 값을 계산
 
