@@ -1,4 +1,4 @@
-# Vue.js 시작하기
+## Vue.js 시작하기
 
 > https://www.inflearn.com/course/Age-of-Vuejs#description  
 > 수업을 들으며 정리해놓으면 좋을 부분들을 정리하자📚
@@ -710,4 +710,74 @@ new Vue({
 * computed
   * 단순한 값에 대한 계산
   * 단순한 text의 입력을 받아 validation 값을 계산
+
+<br>
+
+## 프로젝트 생성 도구 - Vue CLI
+
+### CLI 2.x와 3.x의 차이점 / 프로젝트 생성 및 서버 실행
+
+```bash
+# Vue CLI 2.x
+vue init '프로젝트 템플릿 유형' '프로젝트 폴더 위치'
+# 예시
+vue init 'webpack-simple' '프로젝트 폴더 위치'
+
+# Vue CLI 3.x
+vue create '프로젝트 위치'
+vue create vue-cli
+```
+
+<br>
+
+### CLI로 생성한 프로젝트 폴더 구조 확인 및 main.js 파일 설명
+
+```
+├── public
+│   ├── favicon.ico
+│   └── index.html  -> src 디렉토리 하위의 vue 파일에 대한 의존성을 정의
+├── src
+│   ├── App.vue
+│   ├── assets
+│   │   └── logo.png
+│   ├── components
+│   │   └── HelloWorld.vue
+│   └── main.js
+└── yarn.lock
+
+```
+
+<br>
+
+### 싱글 파일 컴포넌트 소개 및 여태까지 배운 내용 적용하는 방법 & App.vue와 HelloWorld.vue 설명
+
+```html
+var appHeader = {
+    // 하단의 template 태그 안에 들어갈 부분
+    template: '<div>header</div>',
+    // 하단의 script 태그 안의 export default 안의 method 속성 안에 들어갈 부분
+    methods: {
+        addNum: function() {
+
+        }
+    }
+}
+
+<template>
+    <div>header</div>
+</template>
+
+<script>
+export default {
+    methods: {
+        addNum: function() {
+        }
+    }
+}
+</script>
+
+<style>
+
+</style>
+```
 
