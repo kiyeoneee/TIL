@@ -1,0 +1,16 @@
+{
+  "name": "til",
+  "description": "매일 공부하고 정리하자",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/kiyeoneee/TIL.git",
+  "author": "kiyeoneee <kyeoneee@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev documents",
+    "build": "vuepress build documents"
+  },
+  "devDependencies": {
+    "vuepress": "^1.5.4"
+  }
+}

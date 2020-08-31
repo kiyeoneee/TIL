@@ -1,5 +1,3 @@
----
-
 ## Trouble Shooting
 
 ### Java 버전 Issue
