@@ -11,6 +11,10 @@
     "build": "vuepress build documents"
   },
   "devDependencies": {
-    "vuepress": "^1.5.4"
+    "vuepress": "^1.5.4",
+    "vuepress-plugin-auto-sidebar": "^1.5.0"
+  },
+  "dependencies": {
+    "vuepress-auto-sidebar": "^1.1.1"
   }
 }
