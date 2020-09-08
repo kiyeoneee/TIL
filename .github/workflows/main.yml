@@ -1,0 +1,30 @@
+name: CI
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy Build Files
+        env:
+          ACCESS_TOKEN: ${{ secrets.KIYEONEEE_PAGE_ACCESS }} 
+        run: |
+          cd .vuepress/dist
+          git config --global user.email "kyeoneee@gmail.com"
+          git config --global user.name "kiyeoneee"
+          git init
+          git add -A
+          git commit -m 'deploy with vuepress'
+          git push -f https://${ACCESS_TOKEN}@github.com/kiyeoneee.github.io.git master:gh-pages
+
