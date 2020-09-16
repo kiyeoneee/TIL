@@ -43,7 +43,7 @@ SonarQube는 내부적으로 검색을 위해 사용하는 ElasticSearch가 Java
 >
 >    가장 상단의 wrapper.java.command 값을 `{Java11_directory_path}/jdk-{버전}/bin/java`으로 변경 해 준다.
 >
->    ![image-20200507121346145](/Users/kakao/Library/Application Support/typora-user-images/image-20200507121346145.png)
+>    ![image-20200507121346145](../images/image-20200507121346145.png)
 
 <br>
 

@@ -29,7 +29,7 @@
 
 MVVM 패턴의 뷰모델 레이어에 해당하는 View(화면)단 라이브러리
 
-![image-20200619221040091](/Users/kakao/Library/Application Support/typora-user-images/image-20200619221040091.png)
+![image-20200619221040091](../../../images/image-20200619221040091.png)
 
 * View
   * 사용자에게 보여지는 브라우저 화면
@@ -96,7 +96,7 @@ Object.defineProperty(viewModel, 'str', {
 
 ### Hello Vue.js와 뷰 개발자 도구
 
-![image-20200621121237093](/Users/kakao/Library/Application Support/typora-user-images/image-20200621121237093.png)
+![image-20200621121237093](../../../images/image-20200621121237093.png)
 
 <br>
 
