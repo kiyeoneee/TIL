@@ -26,5 +26,5 @@ jobs:
           git init
           git add -A
           git commit -m 'deploy with vuepress'
-          git push -f https://${ACCESS_TOKEN}@github.com/kiyeoneee.github.io.git master:gh-pages
+          git push -f https://${ACCESS_TOKEN}@github.com/kiyeoneee/kiyeoneee.github.io.git master:gh-pages
 
