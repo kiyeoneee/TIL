@@ -7,8 +7,8 @@
   "author": "kiyeoneee <kyeoneee@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "vuepress dev documents",
-    "build": "vuepress build documents"
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
   },
   "devDependencies": {
     "vuepress": "^1.5.4",

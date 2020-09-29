@@ -20,7 +20,7 @@ jobs:
         env:
           ACCESS_TOKEN: ${{ secrets.KIYEONEEE_PAGE_ACCESS }} 
         run: |
-          cd documents/.vuepress/dist
+          cd docs/.vuepress/dist
           git config --global user.email "kyeoneee@gmail.com"
           git config --global user.name "kiyeoneee"
           git init
