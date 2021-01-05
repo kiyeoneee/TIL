@@ -3,6 +3,8 @@
 ## 목차
 
 1. [Write Ahead Log (WAL)](#Write-Ahead-Log-WAL)
+2. [StoreFile (HFile)](#StoreFile-HFile)
+3. [변경 사항 복구](#변경사항-복구)
 
 ---
 
@@ -26,7 +28,7 @@ HBase는 모든 변경 사항들을 로그에 쓰고, 연산이 성공했을 때
 실제 저장 파일을 구현하는 클래스로, HBase의 데이터를 효율적으로 저장한다는 단 하나의 명확한 목표를 달성하기 위한 클래스
 https://github.com/apache/hbase/blob/6cdc4b1f0574cc424480ec2f2e3129f280fa8472/hbase-server/src/main/java/org/apache/hadoop/hbase/io/hfile/HFile.java
 
-![HFile구조](../images/HFile_format.png)
+![HFile구조](../images/HFile-format.png)
 
 위 그림은 HFile의 구조인데 File Info, Trailer 외에는 모두 옵셔널한 블록이다. 하지만 Data 블록는 실질적으로 저장되는 데이터를 담기 때문에 거의 대부분 하나의 데이터 블록은 존재할 것이다.
 Data 블록은 key (로우 키 길이, 로우키, 컬럼 패밀리 길이, ...), value 로 이루어져 있다. 키에는 많은 정보가 담겨져 있으므로 불필요하기 긴 이름의 키 설정을 지양해야 한다.
@@ -43,3 +45,4 @@ Data 블록은 key (로우 키 길이, 로우키, 컬럼 패밀리 길이, ...),
 ## Zookeeper와 HBase (WIP)
 
 http://hbase.apache.org/book.html#trouble.namenode.hbase.objects
+
