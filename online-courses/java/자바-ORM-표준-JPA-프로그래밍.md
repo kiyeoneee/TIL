@@ -121,3 +121,26 @@
 
 - 표준
 
+<br>
+
+# 2. JPA 시작하기
+
+## 1. Hello JPA - 프로젝트 생성
+
+### 데이터베이스 방언
+
+- JPA는 특정 데이터베이스에 종속 X
+- 각각의 데이터베이스가 제공하는 SQL 문법과 함수가 조금씩 다름
+  - 가변 문자 : MySQL은 VARCHAR, Oracle은 VARCHAR2
+  - 문자열을 자르는 함수 : SQL 표준은 SUBSTRING(), Oracle은 SUBSTR()
+  - 페이징 : MySQL은 LIMIT, Oracle은 ROWNUM
+- 방언 : SQL  표준을 지키지 않는 특정 데이터베이스만의 고유한 기능
+- `hibernate.dialect` 속성에 지정하여 JPA가 방언을 해석할 수 있도록 해야 함
+  - H2 : org.hibernate.dialect.H2Dialect
+  - Oracle 10g : org.hibernate.dialect.Oracle10gDialect 
+  - MySQL : org.hibernate.dialect.MySQL5InnoDBDialect
+
+## 2. Hello JPA -  애플리케이션 개발
+
+![JPA-2-2-jpa-inner](/Users/kyeoneee/Desktop/TIL/docs/images/JPA-2-2-jpa-inner.png)
+
